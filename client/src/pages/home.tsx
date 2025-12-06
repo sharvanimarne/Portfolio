@@ -9,8 +9,11 @@ import heroImage from "@assets/generated_images/abstract_3d_glass_shapes_with_pu
 import profileImage from "@assets/generated_images/profile.png";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ContactModal } from "@/components/contact-modal";
+import { useState } from "react";
 
 export default function Home() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const technicalSkills = [
     { name: "React / Next.js", icon: <Code className="w-4 h-4" />, level: 95 },
     { name: "TypeScript", icon: <Terminal className="w-4 h-4" />, level: 90 },
@@ -60,7 +63,12 @@ export default function Home() {
             <a href="#work" className="hover:text-white transition-colors">Work</a>
             <a href="#experience" className="hover:text-white transition-colors">Experience</a>
           </div>
-          <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent">
+          <Button 
+            variant="outline" 
+            className="rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent"
+            onClick={() => setIsContactOpen(true)}
+            data-testid="button-contact-nav"
+          >
             Let's Talk
           </Button>
         </div>
@@ -350,10 +358,20 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                <Button size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-8">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-black hover:bg-white/90 rounded-full px-8"
+                  onClick={() => setIsContactOpen(true)}
+                  data-testid="button-contact-footer"
+                >
                   <Mail className="w-4 h-4 mr-2" /> Get in Touch
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 text-white bg-transparent rounded-full px-8">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/20 hover:bg-white/10 text-white bg-transparent rounded-full px-8"
+                  data-testid="button-resume"
+                >
                   Download Resume
                 </Button>
               </div>
@@ -372,6 +390,9 @@ export default function Home() {
         </div>
       </footer>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </div>
   );
 }
