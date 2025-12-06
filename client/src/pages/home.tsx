@@ -6,7 +6,7 @@ import {
   Layout, Database, Terminal
 } from "lucide-react";
 import heroImage from "@assets/generated_images/abstract_3d_glass_shapes_with_purple_and_blue_lighting.png";
-import profileImage from "@assets/generated_images/professional_headshot_of_a_developer_with_purple_blue_lighting.png";
+import profileImage from "@assets/generated_images/profile.png";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
