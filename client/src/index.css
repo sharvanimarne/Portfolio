@@ -45,8 +45,7 @@
   }
   body {
     @apply font-sans antialiased text-foreground min-h-screen selection:bg-primary/30 selection:text-primary-foreground;
-    background: radial-gradient(circle at top left, #4c1d95 0%, #1e1b4b 40%, #0f172a 100%);
-    background-attachment: fixed;
+    background-color: #0f172a;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
@@ -69,6 +68,13 @@
   .text-gradient-primary {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400;
   }
+
+  .bg-grid-pattern {
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  }
 }
 
 /* Custom Float Animation */
@@ -76,6 +82,12 @@
   0% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
   100% { transform: translateY(0px); }
+}
+
+@keyframes gradient-xy {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .animate-float {
@@ -87,6 +99,11 @@
   animation-delay: 2s;
 }
 
+.animate-gradient-xy {
+  background-size: 200% 200%;
+  animation: gradient-xy 15s ease infinite;
+}
+
 /* Grain Texture Overlay */
 .bg-grain {
   position: fixed;
@@ -95,7 +112,8 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -1;
-  opacity: 0.03;
+  z-index: 10;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
 }
