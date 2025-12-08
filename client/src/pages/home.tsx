@@ -2,11 +2,12 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { motion } from "framer-motion";
 import { 
   ArrowRight, Code, Layers, Sparkles, Github, Twitter, Mail, 
-  GraduationCap, Trophy, Award, Cpu, Users, Zap, Globe, Smartphone,
+  GraduationCap, Trophy, Award, Cpu, Users, Zap, Globe, Smartphone,BarChart3,
   Layout, Database, Terminal
 } from "lucide-react";
+import { FaJava, FaPython, FaAws, FaGitAlt, FaGithub, FaRProject } from "react-icons/fa";
 import heroImage from "@assets/generated_images/abstract_3d_glass_shapes_with_purple_and_blue_lighting.png";
-import profileImage from "@assets/generated_images/profile.png";
+import profileImage from "@assets/generated_images/profile.jpg";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ContactModal } from "@/components/contact-modal";
@@ -15,19 +16,21 @@ import { useState } from "react";
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const technicalSkills = [
-    { name: "React / Next.js", icon: <Code className="w-4 h-4" />, level: 95 },
-    { name: "TypeScript", icon: <Terminal className="w-4 h-4" />, level: 90 },
-    { name: "Tailwind CSS", icon: <Layout className="w-4 h-4" />, level: 95 },
-    { name: "Node.js", icon: <Database className="w-4 h-4" />, level: 85 },
-    { name: "Three.js / WebGL", icon: <Globe className="w-4 h-4" />, level: 75 },
-    { name: "React Native", icon: <Smartphone className="w-4 h-4" />, level: 80 },
+    { name: "HTML/CSS/JavaScript", icon: <Code className="w-4 h-4" />, level: 95 },
+    { name: "Java", icon: <FaJava className="w-4 h-4" />, level: 90 },
+    { name: "Python", icon: <FaPython className="w-4 h-4" />, level: 95 },
+    { name: "R", icon: <FaRProject className="w-4 h-4" />, level: 85 },
+    { name: "Git/Github", icon: <FaGithub className="w-4 h-4" />, level: 75 },
+    { name: "AWS", icon: <FaAws className="w-4 h-4" />, level: 80 },
+    { name: "Data Analysis & Visualization", icon: <BarChart3 className="w-4 h-4" />, level: 85 },
+    { name: "Machine Learning (Scikit-learn, Modeling)", icon: <Cpu className="w-4 h-4" />, level: 75 },
   ];
 
   const softSkills = [
     { name: "Problem Solving", icon: <Zap className="w-4 h-4" /> },
     { name: "Team Leadership", icon: <Users className="w-4 h-4" /> },
     { name: "Communication", icon: <Sparkles className="w-4 h-4" /> },
-    { name: "Agile Methodology", icon: <Cpu className="w-4 h-4" /> },
+    { name: "Critical Thinking", icon: <Cpu className="w-4 h-4" /> },
   ];
 
   return (
@@ -55,9 +58,9 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-background/50 backdrop-blur-md">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-xl font-bold font-heading tracking-wider">
-            ALEX<span className="text-primary">.DEV</span>
+            SHARVANI<span className="text-primary">.DEV</span>
           </span>
-          <div className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
+          <div className="md:flex gap-8 text-sm font-medium text-muted-foreground">
             <a href="#about" className="hover:text-white transition-colors">About</a>
             <a href="#skills" className="hover:text-white transition-colors">Skills</a>
             <a href="#work" className="hover:text-white transition-colors">Work</a>
@@ -85,25 +88,33 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-primary mb-6">
               <Sparkles className="w-4 h-4" />
-              <span>Available for freelance work</span>
+              <span>Available for work</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Crafting <br />
-              <span className="text-gradient-primary">Digital Reality</span>
+              Engineering <br />
+              <span className="text-gradient-primary">Reality </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed">
-              I build immersive web experiences with a focus on motion, depth, and user-centric design.
+              Through Data, Logic & Design , I build immersive interfaces and intelligent systems that feel fast, fluid, and human.
             </p>
             <div className="flex gap-4 flex-wrap">
-              <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white px-8">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white px-8" 
+              onClick={() => {
+    const section = document.getElementById("work");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }}
+>
                 View Projects
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent gap-2">
+              <Button size="lg" variant="outline" className="rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent gap-2"
+              onClick={() => window.open("https://github.com/sharvanimarne", "_blank")}
+              >
                 <Github className="w-4 h-4" /> GitHub
               </Button>
             </div>
           </motion.div>
-
           <motion.div 
             className="relative order-1 lg:order-2 flex justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -116,7 +127,7 @@ export default function Home() {
               <div className="relative w-full h-full rounded-full p-2 border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
                 <img 
                   src={profileImage} 
-                  alt="Alex - Developer Profile" 
+                  alt="Sharvani - Developer Profile" 
                   className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -128,7 +139,7 @@ export default function Home() {
               </GlassCard>
 
               <GlassCard className="absolute top-10 -left-8 animate-float py-3 px-4" hoverEffect>
-                 <span className="text-2xl font-bold">5+</span>
+                 <span className="text-2xl font-bold">1+</span>
                  <span className="text-xs text-muted-foreground block">Years Exp.</span>
               </GlassCard>
             </div>
@@ -213,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="work" className="py-20 px-6 bg-white/5">
+      {/* <section id="work" className="py-20 px-6 bg-white/5">
         <div className="container mx-auto">
           <div className="flex items-end justify-between mb-12">
             <div>
@@ -227,20 +238,21 @@ export default function Home() {
             {[1, 2, 3].map((item) => (
               <GlassCard key={item} hoverEffect className="group relative overflow-hidden min-h-[350px] flex flex-col justify-end border-white/5">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10" />
-                {/* Placeholder for project image - using a gradient div for now */}
+                Placeholder for project image - using a gradient div for now
                 <div className={`absolute inset-0 bg-gradient-to-br ${
                   item === 1 ? 'from-pink-500/20 to-purple-500/20' : 
                   item === 2 ? 'from-blue-500/20 to-cyan-500/20' : 
                   'from-emerald-500/20 to-teal-500/20'
-                } group-hover:scale-105 transition-transform duration-700`} />
+                } group-hover:scale-105 transition-transform duration-700`} /> */}
                 
-                <div className="relative z-20 p-2">
+                {/* <div className="relative z-20 p-2">
                   <div className="mb-2 flex gap-2">
-                    <Badge variant="secondary" className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border-none">Development</Badge>
+                    <Badge variant="secondary" className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border-none">AI/ML & Full-Stack Development</Badge>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Project Alpha {item}</h3>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Brainalyze – AI-Powered Brain Tumor Report Viewer
+</h3>
                   <p className="text-sm text-gray-300 mb-6 line-clamp-2 leading-relaxed">
-                    A cutting-edge web application built with React and Three.js for immersive data visualization.
+                    An intelligent medical web application that helps patients & radiologists easily access, interpret, and visualize AI-generated MRI analysis reports.
                   </p>
                   <div className="flex items-center justify-between border-t border-white/10 pt-4">
                      <div className="flex gap-2">
@@ -257,7 +269,115 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      {/* Projects Section */}
+<section id="work" className="py-20 px-6 bg-white/5">
+  <div className="container mx-auto">
+    <div className="flex items-end justify-between mb-12">
+      <div>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Work</h2>
+        <p className="text-muted-foreground">Selected projects from the last year.</p>
+      </div>
+      <Button variant="link" className="text-primary hidden md:flex">
+        View all work <ArrowRight className="ml-2 w-4 h-4" />
+      </Button>
+    </div>
+
+    {/* PROJECTS DATA */}
+    {(() => {
+      const projects = [
+        {
+          id: 1,
+          domain: "AI/ML & Full-Stack Development",
+          title: "Brainalyze – AI-Powered Brain Tumor Report Viewer",
+          description:
+            "An intelligent medical web application that helps patients & radiologists easily access, interpret, and visualize AI-generated MRI analysis reports.",
+          tech: ["React (Vite)", "Tailwind CSS", "Supabase"],
+          gradient: "from-pink-500/20 to-purple-500/20",
+          caseStudyLink: "https://github.com/PradnyaKulkarni2005/BrainTumor-Detection?tab=readme-ov-file",
+        },
+        {
+          id: 2,
+          domain: "Web Development & Full-Stack Engineering",
+          title: "Library Management System – A Smart Platform for College Library",
+          description:
+            "A full-stack system built to streamline library operations with secure authentication, automated workflows, bulk Excel uploads, email reminders, and interactive dashboards for smooth day-to-day management.",
+          tech: ["React","Node.js", "Supabase"],
+          gradient: "from-blue-500/20 to-cyan-500/20",
+          caseStudyLink: "https://library-management-system-umber-six.vercel.app/",
+        },
+        {
+          id: 3,
+          domain: "AI/ML / Data Analysis",
+          title: "Project Three – Your Third Project Name",
+          description:
+            "Short description for your third project. Add what it does and why it matters.",
+          tech: ["Python", "TensorFlow", "Streamlit"],
+          gradient: "from-emerald-500/20 to-teal-500/20",
+          caseStudyLink: "/case-study/project-three",
+        },
+      ];
+
+      return (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <GlassCard
+              key={project.id}
+              hoverEffect
+              className="group relative overflow-hidden min-h-[350px] flex flex-col justify-end border-white/5"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10" />
+
+              {/* Dynamic gradient */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} group-hover:scale-105 transition-transform duration-700`}
+              />
+
+              <div className="relative z-20 p-2">
+                <div className="mb-2 flex gap-2">
+                  <Badge
+                    variant="secondary"
+                    className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border-none"
+                  >
+                    {project.domain}
+                  </Badge>
+                </div>
+
+                <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+
+                <p className="text-sm text-gray-300 mb-6 line-clamp-2 leading-relaxed">
+                  {project.description}
+                </p>
+
+                <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                  <div className="flex gap-2">
+                    {project.tech.map((t) => (
+                      <span key={t} className="text-xs text-white/60">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Unique Case Study Button */}
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="text-white hover:text-primary hover:bg-white/5 p-0 h-auto font-normal"
+                    onClick={() => window.location.href = project.caseStudyLink}
+                  >
+                    View <ArrowRight className="w-3 h-3 ml-1" />
+                  </Button>
+                </div>
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      );
+    })()}
+  </div>
+</section>
 
       {/* Experience & Education Section */}
       <section id="experience" className="py-20 px-6">
@@ -271,9 +391,9 @@ export default function Home() {
               <div className="absolute left-[28px] top-4 bottom-4 w-[2px] bg-white/5" />
               
               {[
-                { role: "Senior Frontend Engineer", company: "TechCorp", period: "2023 - Present", desc: "Leading the frontend architecture and design system implementation." },
-                { role: "UI/UX Designer", company: "CreativeStudio", period: "2021 - 2023", desc: "Designed intuitive user interfaces for fintech applications." },
-                { role: "Freelance Developer", company: "Self-employed", period: "2019 - 2021", desc: "Built custom websites for small businesses and startups." }
+                { role: "Conversational Data Analysis with LLM", company: "AICTE & VOIS", period: "Sept 2025 - Oct 2025", desc: "End-to-end analysis across multiple datasets - including Netflix, Airbnb bookings, crop production, AI job trends, and space missions - using Python, LLM-powered workflows, and data visualization techniques to generate insights and dashboards" },
+                { role: "Intern", company: "PCCOE", period: "June 2025 - June 2025", desc: "A full-stack library system built for the PCCOE IT Department, featuring secure login, bulk Excel uploads, automated email reminders, and dashboards." },
+                { role: "Data Analyst Intern", company: "InternKaksha IT Solutions", period: "Jan 2024 - Feb 2024", desc: "Developed dashboards to highlight sales trends and customer preferences of Amazon E-commerce." }
               ].map((job, i) => (
                 <GlassCard key={i} className="ml-0 md:ml-4 relative group hover:border-primary/30 transition-colors" hoverEffect>
                   <div className="absolute -left-[34px] md:-left-[38px] top-6 w-4 h-4 rounded-full bg-background border-2 border-primary z-10" />
@@ -296,23 +416,24 @@ export default function Home() {
               <GlassCard className="mb-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h4 className="font-bold text-lg">Master of Computer Science</h4>
-                    <p className="text-primary">Stanford University</p>
+                    <h4 className="font-bold text-lg">B.Tech in Information Technology</h4>
+                    <p className="text-primary">Pimpri Chinchwad College of Engineering Pune</p>
                   </div>
-                  <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">2017 - 2019</span>
+                  <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">2023 - 2027</span>
                 </div>
-                <p className="text-sm text-muted-foreground">Specialized in Human-Computer Interaction and Computer Graphics.</p>
+                
+                <p className="text-sm text-muted-foreground">Honors in Deep Learning and Natural Language Processing.</p>
               </GlassCard>
               
               <GlassCard>
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h4 className="font-bold text-lg">BFA in Interaction Design</h4>
-                    <p className="text-primary">Rhode Island School of Design</p>
+                    <h4 className="font-bold text-lg">12th HSC</h4>
+                    <p className="text-primary">Laxmanrao Apte Jr. College</p>
                   </div>
-                  <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">2013 - 2017</span>
+                  <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">2021 - 2023</span>
                 </div>
-                <p className="text-sm text-muted-foreground">Focus on visual design fundamentals and user-centered design processes.</p>
+                <p className="text-sm text-muted-foreground">MHT-CET 2023 -97.88 Percentile & HSC- 90.50% (PCMB)</p>
               </GlassCard>
             </div>
 
@@ -326,8 +447,8 @@ export default function Home() {
                      <Globe className="w-5 h-5" />
                    </div>
                    <div>
-                     <h5 className="font-bold text-sm">AWS Certified</h5>
-                     <p className="text-xs text-muted-foreground">Solutions Architect</p>
+                     <h5 className="font-bold text-sm">Cloud Practitioner Essentials</h5>
+                     <p className="text-xs text-muted-foreground">AWS</p>
                    </div>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors flex items-center gap-3">
@@ -335,8 +456,8 @@ export default function Home() {
                      <Code className="w-5 h-5" />
                    </div>
                    <div>
-                     <h5 className="font-bold text-sm">Google UX</h5>
-                     <p className="text-xs text-muted-foreground">Professional Cert</p>
+                     <h5 className="font-bold text-sm">Computer Network</h5>
+                     <p className="text-xs text-muted-foreground">Simplilearn</p>
                    </div>
                 </div>
               </div>
@@ -354,7 +475,7 @@ export default function Home() {
               
               <h2 className="text-3xl md:text-5xl font-bold mb-6 relative z-10">Ready to start your next project?</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">
-                I'm currently available for freelance work and open to new opportunities. Let's create something amazing together.
+                I'm currentlyopen to new opportunities. Let's create something amazing together.
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
@@ -366,14 +487,16 @@ export default function Home() {
                 >
                   <Mail className="w-4 h-4 mr-2" /> Get in Touch
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white/20 hover:bg-white/10 text-white bg-transparent rounded-full px-8"
-                  data-testid="button-resume"
-                >
-                  Download Resume
-                </Button>
+                <a href="/resume.pdf" download>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="border-white/20 hover:bg-white/10 text-white bg-transparent rounded-full px-8"
+                    data-testid="button-resume"
+                    >
+                    Download Resume
+                  </Button>
+                </a>
               </div>
             </GlassCard>
          </div>
@@ -381,11 +504,12 @@ export default function Home() {
       
       <footer className="py-8 border-t border-white/5 text-center text-muted-foreground text-sm">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4 px-6">
-          <p>© 2024 Alex Dev. Crafted with React & Tailwind.</p>
+          <p>© 2025 Sharvani Dev. Crafted with React & Tailwind.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">GitHub</a>
+            <a href="https://x.com/sharvanimarne" className="hover:text-white transition-colors">Twitter</a>
+            <a href="https://www.linkedin.com/in/sharvani-marne-113889292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://www.instagram.com/_sharvani__28/?hl=en" className="hover:text-white transition-colors">Instagram</a>
           </div>
         </div>
       </footer>

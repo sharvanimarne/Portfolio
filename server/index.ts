@@ -1,7 +1,14 @@
-import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
-import { serveStatic } from "./static";
+// import express, { type Request, Response, NextFunction } from "express";
+// import { registerRoutes } from "./routes.ts";
+// import { serveStatic } from "./static.ts";
+// import { createServer } from "http";
+import path from "path";  
+import express from "express";
+import type { Request, Response, NextFunction } from "express";
+import { registerRoutes } from "./routes.ts";
+import { serveStatic } from "./static.ts";
 import { createServer } from "http";
+
 
 const app = express();
 const httpServer = createServer(app);
@@ -11,7 +18,6 @@ declare module "http" {
     rawBody: unknown;
   }
 }
-
 app.use(
   express.json({
     verify: (req, _res, buf) => {
@@ -73,26 +79,36 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
-  if (process.env.NODE_ENV === "production") {
-    serveStatic(app);
-  } else {
-    const { setupVite } = await import("./vite");
-    await setupVite(httpServer, app);
-  }
+  // if (process.env.NODE_ENV === "production") {
+  //   serveStatic(app);
+  // } else {
+  //   const { setupVite } = await import("./vite.ts");
+  //   await setupVite(httpServer, app);
+  // }
+if (process.env.NODE_ENV === "production") {
+  serveStatic(app);
+} else {
+  // Serve resume PDF in development before Vite middleware
+  app.get("/resume.pdf", (req: Request, res: Response) => {
+    const filePath = path.resolve(__dirname, "../public/resume.pdf");
+    res.download(filePath, "Sharvani_Resume.pdf", (err) => {
+      if (err) {
+        console.error("Error downloading resume:", err);
+        res.status(500).send("Error downloading resume");
+      }
+    });
+  });
+
+  const { setupVite } = await import("./vite.ts");
+  await setupVite(httpServer, app);
+}
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
   // Other ports are firewalled. Default to 5000 if not specified.
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || "5000", 10);
-  httpServer.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    },
-    () => {
-      log(`serving on port ${port}`);
-    },
-  );
+httpServer.listen(port, "127.0.0.1", () => {
+  log(`serving on http://127.0.0.1:${port}`);
+});
 })();
