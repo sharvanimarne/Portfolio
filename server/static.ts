@@ -11,7 +11,7 @@ export function serveStatic(app: Express) {
   }
  // 1️⃣ Serve resume explicitly
   app.use("/resume.pdf", (req, res) => {
-    const filePath = path.resolve(distPath,"public","resume.pdf");
+    const filePath = path.resolve(distPath,"resume.pdf");
     res.download(filePath, "Sharvani_Resume.pdf", (err) => {
       if (err) {
         console.error("Error downloading resume:", err);

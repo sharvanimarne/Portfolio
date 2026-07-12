@@ -1,9 +1,7 @@
-// import express, { type Request, Response, NextFunction } from "express";
-// import { registerRoutes } from "./routes.ts";
-// import { serveStatic } from "./static.ts";
-// import { createServer } from "http";
+import "dotenv/config";
 import path from "path";  
 import express from "express";
+import { fileURLToPath } from "url";
 import type { Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes.ts";
 import { serveStatic } from "./static.ts";
@@ -12,6 +10,8 @@ import { createServer } from "http";
 
 const app = express();
 const httpServer = createServer(app);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 declare module "http" {
   interface IncomingMessage {
@@ -90,7 +90,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   // Serve resume PDF in development before Vite middleware
   app.get("/resume.pdf", (req: Request, res: Response) => {
-    const filePath = path.resolve(__dirname, "../public/resume.pdf");
+    const filePath = path.resolve(__dirname, "../client/public/resume.pdf");
     res.download(filePath, "Sharvani_Resume.pdf", (err) => {
       if (err) {
         console.error("Error downloading resume:", err);

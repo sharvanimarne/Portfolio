@@ -3,23 +3,25 @@ import { motion } from "framer-motion";
 import { 
   ArrowRight, Code, Layers, Sparkles, Github, Twitter, Mail, 
   GraduationCap, Trophy, Award, Cpu, Users, Zap, Globe, Smartphone,BarChart3,
-  Layout, Database, Terminal
+  Layout, Database, Terminal, Menu
 } from "lucide-react";
 import { FaJava, FaPython, FaAws, FaGitAlt, FaGithub, FaRProject } from "react-icons/fa";
 import heroImage from "@assets/generated_images/abstract_3d_glass_shapes_with_purple_and_blue_lighting.png";
-import profileImage from "@assets/generated_images/profile.jpg";
+import profileImage from "@assets/generated_images/profile.png";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ContactModal } from "@/components/contact-modal";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useState } from "react";
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const technicalSkills = [
     { name: "HTML/CSS/JavaScript", icon: <Code className="w-4 h-4" />, level: 95 },
-    { name: "Java", icon: <FaJava className="w-4 h-4" />, level: 90 },
+    { name: "Java/Spring Boot/Spring Security", icon: <FaJava className="w-4 h-4" />, level: 90 },
     { name: "Python", icon: <FaPython className="w-4 h-4" />, level: 95 },
-    { name: "R", icon: <FaRProject className="w-4 h-4" />, level: 85 },
+    { name: "SQL/PostgreSQL", icon: <FaRProject className="w-4 h-4" />, level: 85 },
     { name: "Git/Github", icon: <FaGithub className="w-4 h-4" />, level: 75 },
     { name: "AWS", icon: <FaAws className="w-4 h-4" />, level: 80 },
     { name: "Data Analysis & Visualization", icon: <BarChart3 className="w-4 h-4" />, level: 85 },
@@ -60,20 +62,66 @@ export default function Home() {
           <span className="text-xl font-bold font-heading tracking-wider">
             SHARVANI<span className="text-primary">.DEV</span>
           </span>
-          <div className="md:flex gap-8 text-sm font-medium text-muted-foreground">
+
+          {/* Desktop nav links - hidden below md */}
+          <div className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
             <a href="#about" className="hover:text-white transition-colors">About</a>
             <a href="#skills" className="hover:text-white transition-colors">Skills</a>
             <a href="#work" className="hover:text-white transition-colors">Work</a>
             <a href="#experience" className="hover:text-white transition-colors">Experience</a>
           </div>
+
+          {/* Desktop CTA - hidden below md */}
           <Button 
             variant="outline" 
-            className="rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent"
+            className="hidden md:inline-flex rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent"
             onClick={() => setIsContactOpen(true)}
             data-testid="button-contact-nav"
           >
             Let's Talk
           </Button>
+
+          {/* Mobile hamburger trigger - visible below md only */}
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <button
+                className="md:hidden inline-flex items-center justify-center rounded-full w-10 h-10 border border-white/20 text-white hover:bg-white/10 transition-colors"
+                aria-label="Open menu"
+                data-testid="button-mobile-menu"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="bg-background/95 backdrop-blur-md border-white/10 w-3/4 sm:max-w-xs"
+            >
+              <div className="flex flex-col gap-6 mt-10 text-lg font-medium text-muted-foreground">
+                <SheetClose asChild>
+                  <a href="#about" className="hover:text-white transition-colors">About</a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a href="#work" className="hover:text-white transition-colors">Work</a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a href="#experience" className="hover:text-white transition-colors">Experience</a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button
+                    variant="outline"
+                    className="rounded-full border-white/20 hover:bg-white/10 text-white bg-transparent w-full mt-4"
+                    onClick={() => setIsContactOpen(true)}
+                    data-testid="button-contact-mobile"
+                  >
+                    Let's Talk
+                  </Button>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
 
@@ -205,15 +253,15 @@ export default function Home() {
                   <li className="flex gap-3 items-start">
                     <div className="mt-1 min-w-[20px]"><Award className="w-5 h-5 text-yellow-500" /></div>
                     <div>
-                      <h4 className="font-bold text-sm">Best UI Design 2023</h4>
-                      <p className="text-xs text-muted-foreground">Awwwards Honorable Mention</p>
+                      <h4 className="font-bold text-sm">Birlasoft Scholarship</h4>
+                      <p className="text-xs text-muted-foreground">Academic Excellence Award</p>
                     </div>
                   </li>
                   <li className="flex gap-3 items-start">
                     <div className="mt-1 min-w-[20px]"><Award className="w-5 h-5 text-blue-500" /></div>
                     <div>
-                      <h4 className="font-bold text-sm">Hackathon Winner</h4>
-                      <p className="text-xs text-muted-foreground">Global Tech Summit 2022</p>
+                      <h4 className="font-bold text-sm">PCMC Merit Scholarship</h4>
+                      <p className="text-xs text-muted-foreground">90%+ Score in SSC & HSC</p>
                     </div>
                   </li>
                 </ul>
@@ -222,54 +270,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Projects Section */}
-      {/* <section id="work" className="py-20 px-6 bg-white/5">
-        <div className="container mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Work</h2>
-              <p className="text-muted-foreground">Selected projects from the last year.</p>
-            </div>
-            <Button variant="link" className="text-primary hidden md:flex">View all work <ArrowRight className="ml-2 w-4 h-4" /></Button>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((item) => (
-              <GlassCard key={item} hoverEffect className="group relative overflow-hidden min-h-[350px] flex flex-col justify-end border-white/5">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10" />
-                Placeholder for project image - using a gradient div for now
-                <div className={`absolute inset-0 bg-gradient-to-br ${
-                  item === 1 ? 'from-pink-500/20 to-purple-500/20' : 
-                  item === 2 ? 'from-blue-500/20 to-cyan-500/20' : 
-                  'from-emerald-500/20 to-teal-500/20'
-                } group-hover:scale-105 transition-transform duration-700`} /> */}
-                
-                {/* <div className="relative z-20 p-2">
-                  <div className="mb-2 flex gap-2">
-                    <Badge variant="secondary" className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border-none">AI/ML & Full-Stack Development</Badge>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Brainalyze – AI-Powered Brain Tumor Report Viewer
-</h3>
-                  <p className="text-sm text-gray-300 mb-6 line-clamp-2 leading-relaxed">
-                    An intelligent medical web application that helps patients & radiologists easily access, interpret, and visualize AI-generated MRI analysis reports.
-                  </p>
-                  <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                     <div className="flex gap-2">
-                      <span className="text-xs text-white/60">React</span>
-                      <span className="text-xs text-white/60">•</span>
-                      <span className="text-xs text-white/60">WebGL</span>
-                    </div>
-                    <Button size="sm" variant="ghost" className="text-white hover:text-primary hover:bg-white/5 p-0 h-auto font-normal">
-                      View Case Study <ArrowRight className="w-3 h-3 ml-1" />
-                    </Button>
-                  </div>
-                </div>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </section> */}
+         
       {/* Projects Section */}
 <section id="work" className="py-20 px-6 bg-white/5">
   <div className="container mx-auto">
@@ -308,13 +309,13 @@ export default function Home() {
         },
         {
           id: 3,
-          domain: "AI/ML / Data Analysis",
-          title: "Project Three – Your Third Project Name",
+          domain: "LegalTech / Full-Stack Development",
+          title: "VakilSahay – Plain-Language Legal Document Analyzer",
           description:
-            "Short description for your third project. Add what it does and why it matters.",
-          tech: ["Python", "TensorFlow", "Streamlit"],
+            "An AI-assisted legal-tech platform that breaks down rental agreements, employment contracts, and loan papers into clause-by-clause plain English, with risk scoring and Indian law references (ICA 1872, Arbitration Act) before you sign.",
+          tech: ["Spring Boot", "React", "PostgreSQL"],
           gradient: "from-emerald-500/20 to-teal-500/20",
-          caseStudyLink: "/case-study/project-three",
+          caseStudyLink: "https://fsd-project-dun.vercel.app/",
         },
       ];
 
@@ -391,9 +392,9 @@ export default function Home() {
               <div className="absolute left-[28px] top-4 bottom-4 w-[2px] bg-white/5" />
               
               {[
+                { role: "Software Engineer Intern", company: "Tracelink", period: "Feb 2026 - Present", desc: "Developed and enhanced backend services for enterprise data exchange using Java, RxJava, and AWS, building REST APIs and debugging production issues. Also led UI automation testing efforts using Selenium, Playwright, TestNG, and JUnit to ensure application reliability across releases." },
                 { role: "Conversational Data Analysis with LLM", company: "AICTE & VOIS", period: "Sept 2025 - Oct 2025", desc: "End-to-end analysis across multiple datasets - including Netflix, Airbnb bookings, crop production, AI job trends, and space missions - using Python, LLM-powered workflows, and data visualization techniques to generate insights and dashboards" },
-                { role: "Intern", company: "PCCOE", period: "June 2025 - June 2025", desc: "A full-stack library system built for the PCCOE IT Department, featuring secure login, bulk Excel uploads, automated email reminders, and dashboards." },
-                { role: "Data Analyst Intern", company: "InternKaksha IT Solutions", period: "Jan 2024 - Feb 2024", desc: "Developed dashboards to highlight sales trends and customer preferences of Amazon E-commerce." }
+                { role: "Intern", company: "PCCOE", period: "June 2025 - June 2025", desc: "A full-stack library system built for the PCCOE IT Department, featuring secure login, bulk Excel uploads, automated email reminders, and dashboards." }
               ].map((job, i) => (
                 <GlassCard key={i} className="ml-0 md:ml-4 relative group hover:border-primary/30 transition-colors" hoverEffect>
                   <div className="absolute -left-[34px] md:-left-[38px] top-6 w-4 h-4 rounded-full bg-background border-2 border-primary z-10" />
@@ -422,7 +423,7 @@ export default function Home() {
                   <span className="text-xs text-muted-foreground bg-white/5 px-2 py-1 rounded">2023 - 2027</span>
                 </div>
                 
-                <p className="text-sm text-muted-foreground">Honors in Deep Learning and Natural Language Processing.</p>
+                <p className="text-sm text-muted-foreground">Honors in Deep Learning and Neural Networks.</p>
               </GlassCard>
               
               <GlassCard>
@@ -475,7 +476,7 @@ export default function Home() {
               
               <h2 className="text-3xl md:text-5xl font-bold mb-6 relative z-10">Ready to start your next project?</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto relative z-10">
-                I'm currentlyopen to new opportunities. Let's create something amazing together.
+                I'm currently open to new opportunities. Let's create something amazing together.
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
@@ -504,7 +505,7 @@ export default function Home() {
       
       <footer className="py-8 border-t border-white/5 text-center text-muted-foreground text-sm">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4 px-6">
-          <p>© 2025 Sharvani Dev. Crafted with React & Tailwind.</p>
+          <p>© 2026 Sharvani Dev. Crafted with React & Tailwind.</p>
           <div className="flex gap-6">
             <a href="https://x.com/sharvanimarne" className="hover:text-white transition-colors">Twitter</a>
             <a href="https://www.linkedin.com/in/sharvani-marne-113889292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app

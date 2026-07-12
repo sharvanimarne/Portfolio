@@ -25,6 +25,8 @@ const allowlist = [
   "passport-local",
   "pg",
   "stripe",
+  "resend",
+  "dotenv",
   "uuid",
   "ws",
   "xlsx",
