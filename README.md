@@ -1,7 +1,7 @@
 # 🌐 Sharvani Marne - Personal Portfolio
 
 <p align="center">
-  <img src="client/public/profile.png" alt="Portfolio Banner" width="180" />
+  <img src="attached_assets/generated_images/profile.png" alt="Portfolio Banner" width="180" />
 </p>
 
 <p align="center">
@@ -10,12 +10,12 @@
 
 <p align="center">
 
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript)
-![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite)
-![Express](https://img.shields.io/badge/Express.js-4-000000?logo=express)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4-38BDF8?logo=tailwindcss)
-![Render](https://img.shields.io/badge/Hosted%20on-Render-46E3B7?logo=render)
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite" alt="Vite">
+  <img src="https://img.shields.io/badge/Express.js-4-000000?logo=express" alt="Express">
+  <img src="https://img.shields.io/badge/TailwindCSS-4-38BDF8?logo=tailwindcss" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Hosted%20on-Render-46E3B7?logo=render" alt="Render">
 
 </p>
 
